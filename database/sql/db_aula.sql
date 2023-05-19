@@ -28,7 +28,13 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela db_aula.categoria: ~0 rows (aproximadamente)
+INSERT INTO `categoria` (`id`, `nome`, `created_at`, `updated_at`) VALUES
+	(1, 'Srta. Julieta Mendonça Santana Jr.', NULL, NULL),
+	(2, 'Dr. Lorenzo Correia Perez', NULL, NULL),
+	(3, 'Analu Paula Vale', NULL, NULL),
+	(4, 'Srta. Tessália Manuela Chaves', NULL, NULL),
+	(5, 'Sr. Filipe Paz', NULL, NULL);
 
 -- Copiando estrutura para tabela db_aula.failed_jobs
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
@@ -43,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela db_aula.failed_jobs: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela db_aula.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
@@ -53,7 +59,15 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela db_aula.migrations: ~0 rows (aproximadamente)
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+	(1, '2014_10_12_000000_create_users_table', 1),
+	(2, '2014_10_12_100000_create_password_resets_table', 1),
+	(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+	(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+	(5, '2023_04_14_165129_create_usuario', 1),
+	(6, '2023_04_28_175149_create_categorias_table', 1),
+	(7, '2023_05_10_175848_create_produtos_table', 1);
 
 -- Copiando estrutura para tabela db_aula.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
@@ -63,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela db_aula.password_resets: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela db_aula.personal_access_tokens
 CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
@@ -81,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela db_aula.personal_access_tokens: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela db_aula.produto
 CREATE TABLE IF NOT EXISTS `produto` (
@@ -97,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela db_aula.produto: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela db_aula.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -113,7 +127,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela db_aula.users: ~0 rows (aproximadamente)
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+	(1, 'admin', 'admin@admin.com', NULL, '$2y$10$ZSo.avatnv42ubXl7QDo1OutUghp9V.s3g2bEivK4yrm02AtQl6we', NULL, '2023-05-19 20:45:16', '2023-05-19 20:45:16');
 
 -- Copiando estrutura para tabela db_aula.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
@@ -128,9 +144,12 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`id`),
   KEY `usuario_categoria_id_foreign` (`categoria_id`),
   CONSTRAINT `usuario_categoria_id_foreign` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela db_aula.usuario: ~0 rows (aproximadamente)
+INSERT INTO `usuario` (`id`, `nome`, `telefone`, `email`, `imagem`, `created_at`, `updated_at`, `categoria_id`) VALUES
+	(1, 'dada', '12312', 'dada@gmail.com', 'imagem/20230519174640.jpg', '2023-05-19 20:46:40', '2023-05-19 20:46:40', 3),
+	(2, 'dawdwadad', '1231', 'admindadada@admin.com', '', '2023-05-19 20:47:36', '2023-05-19 20:47:36', 3);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

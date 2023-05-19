@@ -68,7 +68,7 @@
     </header>
     <div class="content">
         <div class="container">
-            <img src="./public/icons/no-image.jpg" alt="" />
+
             <br>
             @php
                 $nome_imagem = !empty($produto->imagem) ? $produto->imagem : 'sem_imagem.jpg';
@@ -76,9 +76,8 @@
 
 
             <br>
-            <img class="img-thumbnail" src="/storage/{{ $nome_imagem }}" width="300px" />
-            <br><br>
-            <input type="file" class="imgadd" name="imagem" />
+            <img class="img-thumbnail" src="/storage/{{ $nome_imagem }}" style="width:500px; height:500px; margin-top:100px" />
+            <input type="file" class="imgadd" name="imagem" style="margin-top:643px; margin-left: -420px; margin-right:200px; " />
             <br>
 
         </div>
