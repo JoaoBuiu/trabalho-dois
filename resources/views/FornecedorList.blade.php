@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Estoque | Bom Look</title>
+    <title>Fornecedor | Bom Look</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -205,7 +205,7 @@ select:focus {
       </div>
     </header>
     <div class="content">
-    <h1>Controle de Estoque</h1><br>
+    <h1>Controle de Fornecedores</h1><br>
       <div class="search">
         <form action="ProdutoList.php" method="post">
         <select name="campo">
@@ -214,7 +214,7 @@ select:focus {
         </select>
         <input type="text" name="valor"/>
         <input type="submit" value="Buscar"/>
-        <a class="btn btn-success" href='{{ action('App\Http\Controllers\ProdutoController@create') }}'><i
+        <a class="btn btn-success" href='{{ action('App\Http\Controllers\FornecedorController@create') }}'><i
             class="fa-solid fa-plus"></i> Cadastrar</a>
 
 
@@ -227,32 +227,27 @@ select:focus {
 
                 <tr>
                     <th>ID</th>
-                    <th>Produto</th>
-                    <th>Quantidade</th>
-                    <th>Valor</th>
-                    <th>Tamanho</th>
-                    <th>imagem</th>
+                    <th>Nome</th>
+                    <th>Contato</th>
+                    <th>Assunto</th>
+                    <th>Data</th>
                     <th>Editar</th>
-                    <th>Excluir</th>
+                    <th>Deletar</th>
                 </tr>
-
-            @foreach ($produtos as $item)
-                    @php
-                        $nome_imagem = !empty($item->imagem) ? $item->imagem : 'sem_imagem.jpg';
-                    @endphp
+                @foreach ($fornecedores as $item)
                     <tr>
                         <td scope='row'>{{ $item->id }}</td>
                         <td>{{ $item->nome }}</td>
-                        <td>{{ $item->preco }}</td>
-                        <td>{{ $item->quantidade }}</td>
-                        <td>{{ $item->tamanho }}</td>
+                        <td>{{ $item->contato }}</td>
+                        <td>{{ $item->assunto }}</td>
+                        <td>{{ $item->data }}</td>
 
-                        <td><img src="/storage/{{ $nome_imagem }}" width="1px" height="1px" style="width:100px; height:100px; margin-top:1px" /> </td>
-                        <td><a href="{{ action('App\Http\Controllers\ProdutoController@edit', $item->id) }}"><i
+
+                        <td><a href="{{ action('App\Http\Controllers\FornecedorController@edit', $item->id) }}"><i
                                     class='fa-solid fa-pen-to-square' style='color:orange;'></i></a></td>
                         <td>
                             <form method="POST"
-                                action="{{ action('App\Http\Controllers\ProdutoController@destroy', $item->id) }}">
+                                action="{{ action('App\Http\Controllers\FornecedorController@destroy', $item->id) }}">
                                 <input type="hidden" name="_method" value="DELETE">
                                 @csrf
                                 <button type="submit" onclick='return confirm("Deseja Excluir?")'

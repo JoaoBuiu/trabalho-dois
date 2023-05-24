@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\FornecedorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,9 +30,11 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('usuario', UsuarioController::class);
     Route::resource('produto', ProdutoController::class);
+    Route::resource('fornecedor', FornecedorController::class);
 
     Route::post('usuario/search', [UsuarioController::class, 'search']);
     Route::post('produto/search', [ProdutoController::class, 'search']);
+    Route::post('fornecedor/search', [FornecedorController::class, 'search']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name(
         'profile.edit'

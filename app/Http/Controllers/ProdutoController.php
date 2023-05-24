@@ -49,6 +49,15 @@ class ProdutoController extends Controller
             ]
         );
 
+        $dados = [
+            'nome' => $request->nome,
+            'preco' => $request->preco,
+            'tamanho' => $request->tamanho,
+            'quantidade' => $request->quantidade,
+            'descricao' => $request->descricao,
+            'categoria_id' => $request->categoria_id,
+        ];
+
         $imagem = $request->file('imagem');
         $nome_arquivo = '';
         if ($imagem) {
@@ -57,19 +66,11 @@ class ProdutoController extends Controller
 
             $diretorio = 'imagem/';
             $imagem->storeAs($diretorio, $nome_arquivo, 'public');
-            $nome_arquivo = $diretorio . $nome_arquivo;
+            $dados['imagem'] = $diretorio . $nome_arquivo;
         }
 
         //dd( $request->nome);
-        Produto::create([
-            'nome' => $request->nome,
-            'preco' => $request->preco,
-            'tamanho' => $request->tamanho,
-            'quantidade' => $request->quantidade,
-            'descricao' => $request->descricao,
-            'categoria_id' => $request->categoria_id,
-            'imagem' => $nome_arquivo,
-        ]);
+        Produto::create($dados);
 
         return \redirect()->action(
             'App\Http\Controllers\ProdutoController@index'
@@ -129,6 +130,14 @@ class ProdutoController extends Controller
                 'tamanho.max' => 'Só é permitido 100 caracteres',
             ]
         );
+        $dados = [
+            'nome' => $request->nome,
+            'preco' => $request->preco,
+            'tamanho' => $request->tamanho,
+            'quantidade' => $request->quantidade,
+            'descricao' => $request->descricao,
+            'categoria_id' => $request->categoria_id,
+        ];
 
         $imagem = $request->file('imagem');
         $nome_arquivo = '';
@@ -138,21 +147,12 @@ class ProdutoController extends Controller
 
             $diretorio = 'imagem/';
             $imagem->storeAs($diretorio, $nome_arquivo, 'public');
-            $nome_arquivo = $diretorio . $nome_arquivo;
+            $dados['imagem'] = $diretorio . $nome_arquivo;
         }
 
         Usuario::updateOrCreate(
             ['id' => $request->id],
-            [
-
-                'nome' => $request->nome,
-                'preco' => $request->preco,
-                'tamanho' => $request->tamanho,
-                'quantidade' => $request->quantidade,
-                'descricao' => $request->descricao,
-                'categoria_id' => $request->categoria_id,
-                'imagem' => $nome_arquivo,
-            ]
+            $dados
         );
 
         return \redirect()->action(

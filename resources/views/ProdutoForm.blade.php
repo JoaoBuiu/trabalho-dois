@@ -68,7 +68,7 @@
     </header>
     <div class="content">
         <div class="container">
-
+        <form action='{{ $route }}' method="POST" enctype="multipart/form-data">
             <br>
             @php
                 $nome_imagem = !empty($produto->imagem) ? $produto->imagem : 'sem_imagem.jpg';
@@ -76,13 +76,12 @@
 
 
             <br>
-            <img class="img-thumbnail" src="/storage/{{ $nome_imagem }}" style="width:500px; height:500px; margin-top:100px" />
-            <input type="file" class="imgadd" name="imagem" style="margin-top:643px; margin-left: -420px; margin-right:200px; " />
+            <img class="img-thumbnail" src="/storage/{{ $nome_imagem }}" style="width:500px; height:500px; margin-top:10px" /><br>
+            <input type="file" class="imgadd" name="imagem" style="margin-top:10px; margin-left: 80px; margin-right:200px; " />
             <br>
 
         </div>
 
-        <form action='{{ $route }}' method="POST" enctype="multipart/form-data">
             @csrf
             @if (!empty($produto->id))
                 @method('PUT')
@@ -114,12 +113,6 @@
                     value="@if (!empty(old('nome'))) {{ old('nome') }} @elseif(!empty($produto->descricao)) {{ $produto->descricao }} @else {{ '' }} @endif" />
                 <br>
                 <br>
-
-
-
-
-
-
                 <button class="btn btn-success" type="submit">
                     <i class="fa-solid fa-save"></i> Salvar
                 </button>
