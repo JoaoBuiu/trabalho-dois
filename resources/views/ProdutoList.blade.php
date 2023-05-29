@@ -17,6 +17,7 @@
 
     </form>
 </div>
+
 <div class="card">
     <div id="myDIV">
         <table>
@@ -31,11 +32,12 @@
                 <th>Excluir</th>
             </tr>
 
+
             @foreach ($produtos as $item)
                 @php
                     $nome_imagem = !empty($item->imagem) ? $item->imagem : 'sem_imagem.jpg';
                 @endphp
-                <tr>
+                <tr >
                     <td scope='row'>{{ $item->id }}</td>
                     <td>{{ $item->nome }}</td>
                     <td>{{ $item->preco }}</td>
