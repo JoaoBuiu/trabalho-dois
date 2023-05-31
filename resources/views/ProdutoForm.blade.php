@@ -27,6 +27,7 @@
             </div>
             <div class="col-6">
 
+
                 <div class="aside">
                     <input type="hidden" name="id"
                         value="@if (!empty(old('id'))) {{ old('id') }} @elseif(!empty($produto->id)) {{ $produto->id }} @else {{ '' }} @endif" /><br>

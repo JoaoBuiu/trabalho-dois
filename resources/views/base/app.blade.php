@@ -35,6 +35,11 @@
     <link rel="stylesheet" href="{{asset('css/exprodutoedit.css')}}" />
     <link rel="stylesheet" href="{{asset('css/snackbar.css')}}" />
     <link rel="stylesheet" href="{{asset('css/indexadm.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/indexadm.css')}}" />
+    <link rel="stylesheet" href="{{asset('js/slider.js')}}" />
+    <link rel="stylesheet" href="{{asset('js/snackbar.js')}}" />
+    <link rel="stylesheet" href="{{asset('js/pop.js')}}" />
+    <link rel="stylesheet" href="{{asset('js/login.js')}}" />
   </head>
   <style>
     #edit {
@@ -81,7 +86,8 @@
       flex-direction: column;
       padding-top: 7rem;
     }
-    table {
+
+/*    table {
       width: 100%;
       display: flex;
       flex-direction: row;
@@ -95,6 +101,7 @@
       text-indent: initial;
       border-spacing: 2px;
     }
+    */
     th {
       padding-top: 0.1em;
       padding-bottom: 0.1em;

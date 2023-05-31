@@ -1,9 +1,8 @@
 <header>
     <div class="header_adm">
-        <a href="./FornecedorList.php">Fornecedores</a><br>
-        <a href="./ProdutoList.php">Estoque</a><br>
-        <a href="./SuporteList.php">Suporte</a><br>
+        <a href="{{ url('/fornecedor') }}">Fornecedores</a><br>
         <a href="{{ url('/usuario') }}">Usuarios</a><br>
+        <a href="{{ url('/produto') }}">Produtos</a><br>
     </div>
     <div>
         <nav>
