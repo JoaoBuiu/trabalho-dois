@@ -1,6 +1,9 @@
 @extends('base.app')
 @section('conteudo')
 @section('tituloPagina', 'Produto Formulário')
+
+<form action="{{ route('produto.search') }}" method="post" style="margin-right:150px;">
+    @csrf
 <div class="col">
     <div class="row">
         <div class="col-12"  style="text-align: center">
@@ -9,10 +12,11 @@
                 <form action="ProdutoList.php" method="post">
                     <select name="campo">
                         <option value="id">Id</option>
-                        <option value="nome">Nome</option>
                     </select>
                     <input type="text" name="valor" />
-                    <input type="submit" value="Buscar" />
+                    <button class="btn btn-primary" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i> Buscar
+                    </button>
                     <a class="btn btn-success" href='{{ action('App\Http\Controllers\ProdutoController@create') }}'><i
                             class="fa-solid fa-plus"></i> Cadastrar</a>
                 </form>
@@ -63,4 +67,5 @@
         </div>
     </div>
 </div>
+</form>
 @endsection

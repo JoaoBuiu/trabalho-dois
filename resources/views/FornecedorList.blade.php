@@ -2,6 +2,8 @@
 @section('conteudo')
 @section('tituloPagina', 'Fornecedor Formulário')
 
+<form action="{{ route('fornecedor.search') }}" method="post" style="margin-right:150px;">
+    @csrf
 <div class="col">
     <div class="row">
         <div class="col-12"  style="text-align: center">
@@ -13,7 +15,9 @@
                         <option value="nome">Nome</option>
                     </select>
                     <input type="text" name="valor" />
-                    <input type="submit" value="Buscar" />
+                    <button class="btn btn-primary" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i> Buscar
+                    </button>
                     <a class="btn btn-success" href='{{ action('App\Http\Controllers\FornecedorController@create') }}'><i
                             class="fa-solid fa-plus"></i> Cadastrar</a>
                 </form>
@@ -62,5 +66,6 @@
         </div>
     </div>
 </div>
+</form>
 
 @endsection

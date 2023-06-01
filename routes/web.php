@@ -32,9 +32,16 @@ Route::middleware('auth')->group(function () {
     Route::resource('produto', ProdutoController::class);
     Route::resource('fornecedor', FornecedorController::class);
 
-    Route::post('usuario/search', [UsuarioController::class, 'search']);
-    Route::post('produto/search', [ProdutoController::class, 'search']);
-    Route::post('fornecedor/search', [FornecedorController::class, 'search']);
+    Route::post('usuario/search', [UsuarioController::class, 'search'])->name(
+            'usuario.search'
+    );
+
+    Route::post('produto/search', [ProdutoController::class, 'search'])->name(
+        'produto.search'
+    );
+    Route::post('fornecedor/search', [FornecedorController::class, 'search'])->name(
+        'fornecedor.search'
+    );
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name(
         'profile.edit'

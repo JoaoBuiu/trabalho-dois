@@ -2,7 +2,10 @@
 @section('conteudo')
 @section('tituloPagina', 'Usuario Formulário')
 
-<div class="col">
+
+<form action="{{ route('usuario.search') }}" method="post" style="margin-right:150px;">
+@csrf
+<div class="col" >
     <div class="row">
         <div class="col-12"  style="text-align: center">
             <h1>Listagem de usuario</h1><br>
@@ -13,7 +16,9 @@
                         <option value="nome">Nome</option>
                     </select>
                     <input type="text" name="valor" />
-                    <input type="submit" value="Buscar" />
+                    <button class="btn btn-primary" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i> Buscar
+                    </button>
                     <a class="btn btn-success" href='{{ action('App\Http\Controllers\UsuarioController@create') }}'><i
                             class="fa-solid fa-plus"></i> Cadastrar</a>
                 </form>
@@ -21,17 +26,18 @@
         </div>
     </div>
 
+
     <div class="row">
         <div>
-            <table style="margin-left:190px;">
+            <table style="margin-left:100px;">
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Telefone</th>
                         <th scope="col">Email</th>
                         <th scope="col">Categoria</th>
-                        <th scope="col">Deletar</th>
                         <th scope="col">Editar</th>
+                        <th scope="col">Deletar</th>
                     </tr>
 
 
@@ -45,7 +51,6 @@
                         <td>{{ $item->telefone }}</td>
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->categoria->nome ?? ''}}</td>
-                        <td><img src="/storage/{{ $nome_imagem }}" width="100px" class="img-thumbnail" /> </td>
                         <td><a href="{{ action('App\Http\Controllers\UsuarioController@edit', $item->id) }}"><i
                                     class='fa-solid fa-pen-to-square' style='color:orange;'></i></a></td>
                         <td>
@@ -64,5 +69,6 @@
         </div>
     </div>
 </div>
+</form>
 
 @endsection

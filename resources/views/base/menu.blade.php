@@ -7,14 +7,14 @@
     <div>
         <nav>
             <div class="dropdown3">
-                <a href="adm.html"><img src="./public/icons/adm.svg"><img> </a>
+                <a href="adm.html"><img src="./storage/icons/adm.svg"><img> </a>
 
                 <div class="dropdown-content3">
                     <a href="UsuarioForm.php">Cadastrar</a>
                 </div>
             </div>
         </nav> <a href="index.php">
-            <img src="./public/icons/LogoPronta.svg" alt="Bom Look Logo" class="logo-adm" /></a>
+            <img src="/icons/Bomlook.png" alt="Bom Look Logo" class="logo-adm" /></a>
     </div>
     @guest
         <li class="nav-item">
