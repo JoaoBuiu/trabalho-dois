@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\LeituraController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('usuario', UsuarioController::class);
     Route::resource('produto', ProdutoController::class);
     Route::resource('fornecedor', FornecedorController::class);
+    Route::resource('leitura', LeituraController::class);
 
     Route::post('usuario/search', [UsuarioController::class, 'search'])->name(
             'usuario.search'
@@ -41,6 +43,9 @@ Route::middleware('auth')->group(function () {
     );
     Route::post('fornecedor/search', [FornecedorController::class, 'search'])->name(
         'fornecedor.search'
+    );
+    Route::post('leitura/search', [LeituraController::class, 'search'])->name(
+        'leitura.search'
     );
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name(

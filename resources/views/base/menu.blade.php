@@ -3,6 +3,7 @@
         <a href="{{ url('/fornecedor') }}">Fornecedores</a><br>
         <a href="{{ url('/usuario') }}">Usuarios</a><br>
         <a href="{{ url('/produto') }}">Produtos</a><br>
+        <a href="{{ url('/leitura') }}">Leituras</a><br>
     </div>
     <div>
         <nav>
@@ -14,7 +15,7 @@
                 </div>
             </div>
         </nav> <a href="index.php">
-            <img src="/icons/Bomlook.png" alt="Bom Look Logo" class="logo-adm" /></a>
+            <img src="./storage/icons/LogoPronta.svg"  class="logo-adm" /></a>
     </div>
     @guest
         <li class="nav-item">
