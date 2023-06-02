@@ -28,13 +28,13 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela db_aula.categoria: ~5 rows (aproximadamente)
+-- Copiando dados para a tabela db_aula.categoria: ~0 rows (aproximadamente)
 INSERT INTO `categoria` (`id`, `nome`, `created_at`, `updated_at`) VALUES
-	(1, 'Melinda D\'ávila Guerra', NULL, NULL),
-	(2, 'Sr. Thales de Oliveira Campos Jr.', NULL, NULL),
-	(3, 'Dr. Caroline Dias Esteves', NULL, NULL),
-	(4, 'Maximiano Tiago Chaves', NULL, NULL),
-	(5, 'Sr. Yuri Rivera Filho', NULL, NULL);
+	(1, 'Regina Suzana Fidalgo Jr.', NULL, NULL),
+	(2, 'Srta. Luara Aguiar Neto', NULL, NULL),
+	(3, 'Sr. Willian Jonas Alcantara', NULL, NULL),
+	(4, 'Dr. Anderson Delatorre Correia Jr.', NULL, NULL),
+	(5, 'Sra. Clara Mirela Pedrosa Filho', NULL, NULL);
 
 -- Copiando estrutura para tabela db_aula.failed_jobs
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
@@ -61,11 +61,9 @@ CREATE TABLE IF NOT EXISTS `fornecedor` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela db_aula.fornecedor: ~1 rows (aproximadamente)
-INSERT INTO `fornecedor` (`id`, `nome`, `contato`, `assunto`, `data`, `created_at`, `updated_at`) VALUES
-	(1, 'Nike', 'Nike.com', 'Camisas', '3333-03-12', '2023-06-01 15:03:07', '2023-06-01 15:03:07');
+-- Copiando dados para a tabela db_aula.fornecedor: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela db_aula.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
@@ -73,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Copiando dados para a tabela db_aula.migrations: ~0 rows (aproximadamente)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -84,7 +82,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(5, '2023_04_14_165129_create_usuario', 1),
 	(6, '2023_04_28_175149_create_categorias_table', 1),
 	(7, '2023_05_10_175848_create_produtos_table', 1),
-	(8, '2023_05_24_162517_create_fornecedor_table', 1);
+	(8, '2023_05_24_162517_create_fornecedor_table', 1),
+	(9, '2023_06_02_120433_create__mac_bejo_table', 2),
+	(10, '2023_06_02_121316_create__sensor_bejo_table', 2),
+	(11, '2023_06_02_121534_create__leitura_bejo_table', 2),
+	(12, '2023_06_02_122539_create__sensor_bejo_table', 3),
+	(13, '2023_06_02_122555_create__mac_bejo_table', 3),
+	(14, '2023_06_02_122610_create__leitura_bejo_table', 3);
 
 -- Copiando estrutura para tabela db_aula.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
@@ -126,11 +130,9 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela db_aula.produto: ~1 rows (aproximadamente)
-INSERT INTO `produto` (`id`, `nome`, `preco`, `quantidade`, `tamanho`, `imagem`, `descricao`, `created_at`, `updated_at`) VALUES
-	(1, 'Camisa', '12', '1', 'm', 'imagem/20230601121348.jpg', 'Camisa nike', '2023-06-01 15:13:48', '2023-06-01 15:13:48');
+-- Copiando dados para a tabela db_aula.produto: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela db_aula.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -146,9 +148,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela db_aula.users: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela db_aula.users: ~0 rows (aproximadamente)
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'admin', 'admin@admin', NULL, '$2y$10$RpwMtMchKvMurCJBEMfauOW93PFn7A6ZViAjAInGEQKnLmVQmyKOW', NULL, '2023-06-01 14:43:34', '2023-06-01 14:43:34');
+	(1, 'admin', 'admin@admin', NULL, '$2y$10$RpwMtMchKvMurCJBEMfauOW93PFn7A6ZViAjAInGEQKnLmVQmyKOW', NULL, '2023-06-01 17:43:34', '2023-06-01 17:43:34');
 
 -- Copiando estrutura para tabela db_aula.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
@@ -163,11 +165,62 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`id`),
   KEY `usuario_categoria_id_foreign` (`categoria_id`),
   CONSTRAINT `usuario_categoria_id_foreign` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela db_aula.usuario: ~1 rows (aproximadamente)
-INSERT INTO `usuario` (`id`, `nome`, `telefone`, `email`, `imagem`, `created_at`, `updated_at`, `categoria_id`) VALUES
-	(1, 'Joao', '49 99999999', 'joao@joao', '', '2023-06-01 15:07:07', '2023-06-01 15:07:07', 1);
+-- Copiando dados para a tabela db_aula.usuario: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela db_aula._leitura_bejo
+CREATE TABLE IF NOT EXISTS `_leitura_bejo` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `_mac_bejo_id` bigint unsigned DEFAULT NULL,
+  `_sensor_bejo_id` bigint unsigned DEFAULT NULL,
+  `DataLeitura` date DEFAULT NULL,
+  `HoraLeitura` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `_mac_bejo_id` (`_mac_bejo_id`),
+  KEY `_sensor_bejo_id` (`_sensor_bejo_id`),
+  CONSTRAINT `_leitura_bejo_mac_bejo_id_foreign` FOREIGN KEY (`_mac_bejo_id`) REFERENCES `_mac_bejo` (`id`),
+  CONSTRAINT `_leitura_bejo_sensor_bejo_id_foreign` FOREIGN KEY (`_sensor_bejo_id`) REFERENCES `_sensor_bejo` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Copiando dados para a tabela db_aula._leitura_bejo: ~0 rows (aproximadamente)
+INSERT INTO `_leitura_bejo` (`id`, `created_at`, `updated_at`, `_mac_bejo_id`, `_sensor_bejo_id`, `DataLeitura`, `HoraLeitura`) VALUES
+	(1, '2023-06-02 20:18:18', '2023-06-02 20:18:18', 1, 1, '3122-03-12', '12:30'),
+	(2, '2023-06-02 20:26:05', '2023-06-02 20:26:05', 1, 1, '1233-03-12', '12:30'),
+	(3, '2023-06-02 20:27:04', '2023-06-02 20:27:04', 1, 1, '1233-03-12', '12:30'),
+	(4, '2023-06-02 20:33:59', '2023-06-02 20:33:59', NULL, NULL, '2121-03-12', '12:30');
+
+-- Copiando estrutura para tabela db_aula._mac_bejo
+CREATE TABLE IF NOT EXISTS `_mac_bejo` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `Nome` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Contador` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Copiando dados para a tabela db_aula._mac_bejo: ~1 rows (aproximadamente)
+INSERT INTO `_mac_bejo` (`id`, `created_at`, `updated_at`, `Nome`, `Contador`) VALUES
+	(1, NULL, NULL, '15:13:1d:12', '34'),
+	(2, NULL, NULL, '15:11:13:12', '39');
+
+-- Copiando estrutura para tabela db_aula._sensor_bejo
+CREATE TABLE IF NOT EXISTS `_sensor_bejo` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `Nome` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Contador` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Copiando dados para a tabela db_aula._sensor_bejo: ~1 rows (aproximadamente)
+INSERT INTO `_sensor_bejo` (`id`, `created_at`, `updated_at`, `Nome`, `Contador`) VALUES
+	(1, NULL, NULL, '15:13:1d:12', '34'),
+	(2, NULL, NULL, '15:11:13:12', '39');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
