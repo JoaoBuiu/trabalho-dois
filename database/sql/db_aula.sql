@@ -179,10 +179,10 @@ CREATE TABLE IF NOT EXISTS `_leitura_bejo` (
   `DataLeitura` date DEFAULT NULL,
   `HoraLeitura` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `_mac_bejo_id` (`_mac_bejo_id`),
-  KEY `_sensor_bejo_id` (`_sensor_bejo_id`),
-  CONSTRAINT `_leitura_bejo_mac_bejo_id_foreign` FOREIGN KEY (`_mac_bejo_id`) REFERENCES `_mac_bejo` (`id`),
-  CONSTRAINT `_leitura_bejo_sensor_bejo_id_foreign` FOREIGN KEY (`_sensor_bejo_id`) REFERENCES `_sensor_bejo` (`id`)
+  KEY `Mac_idMac` (`Mac_idMac`),
+  KEY `Sensor_idSensor` (`Sensor_idSensor`),
+  CONSTRAINT `_leitura_bejo_Mac_idMac_foreign` FOREIGN KEY (`Mac_idMac`) REFERENCES `Mac` (`idMac`),
+  CONSTRAINT `_leitura_bejo_Sensor_idSensor_foreign` FOREIGN KEY (`Sensor_idSensor`) REFERENCES `Sensor` (`idSensor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Copiando dados para a tabela db_aula._leitura_bejo: ~0 rows (aproximadamente)
@@ -193,32 +193,32 @@ INSERT INTO `_leitura_bejo` (`id`, `created_at`, `updated_at`, `_mac_bejo_id`, `
 	(4, '2023-06-02 20:33:59', '2023-06-02 20:33:59', NULL, NULL, '2121-03-12', '12:30');
 
 -- Copiando estrutura para tabela db_aula._mac_bejo
-CREATE TABLE IF NOT EXISTS `_mac_bejo` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `Mac` (
+  `idMac` bigint unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `Nome` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Contador` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`idMac`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Copiando dados para a tabela db_aula._mac_bejo: ~1 rows (aproximadamente)
-INSERT INTO `_mac_bejo` (`id`, `created_at`, `updated_at`, `Nome`, `Contador`) VALUES
+INSERT INTO `Mac` (`idMac`, `created_at`, `updated_at`, `Nome`, `Contador`) VALUES
 	(1, NULL, NULL, '15:13:1d:12', '34'),
 	(2, NULL, NULL, '15:11:13:12', '39');
 
 -- Copiando estrutura para tabela db_aula._sensor_bejo
-CREATE TABLE IF NOT EXISTS `_sensor_bejo` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `Sensor` (
+  `idSensor` bigint unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `Nome` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Contador` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`idSensor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Copiando dados para a tabela db_aula._sensor_bejo: ~1 rows (aproximadamente)
-INSERT INTO `_sensor_bejo` (`id`, `created_at`, `updated_at`, `Nome`, `Contador`) VALUES
+INSERT INTO `Sensor` (`idSensor`, `created_at`, `updated_at`, `Nome`, `Contador`) VALUES
 	(1, NULL, NULL, '15:13:1d:12', '34'),
 	(2, NULL, NULL, '15:11:13:12', '39');
 
@@ -227,3 +227,166 @@ INSERT INTO `_sensor_bejo` (`id`, `created_at`, `updated_at`, `Nome`, `Contador`
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+
+
+C   digo do Miguel
+
+CREATE TABLE Bejo (
+  idLeituraBejo INTEGER UNSIGNED  NOT NULL   AUTO_INCREMENT,
+  Sensor_idSensor INTEGER UNSIGNED  NOT NULL  ,
+  Mac_idMac VARCHAR(17)  NOT NULL  ,
+  DataLeitura DATE  NULL  ,
+  HoraLeitura TEXT  NULL  ,
+  ValorSensor REAL  NULL    ,
+PRIMARY KEY(idLeituraBejo)  ,
+INDEX Leitura_FKIndex1(Mac_idMac)  ,
+INDEX Leitura_FKIndex2(Sensor_idSensor),
+  FOREIGN KEY(Mac_idMac)
+    REFERENCES Mac(idMac)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION,
+  FOREIGN KEY(Sensor_idSensor)
+    REFERENCES Sensor(idSensor)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION);
+
+
+
+-- Estrutura da tabela `leiturabejo`
+--
+
+CREATE TABLE `leiturabejo` (
+  `idLeituraBeJo` int(10) UNSIGNED NOT NULL,
+  `Sensor_idSensor` int(10) UNSIGNED NOT NULL,
+  `Mac_idMac` varchar(17) NOT NULL,
+  `DataLeitura` date DEFAULT NULL,
+  `HoraLeitura` text DEFAULT NULL,
+  `ValorSensor` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Acionadores `leiturabejo`
+--
+DELIMITER $$
+CREATE TRIGGER `TgBJDeleteLeitura` AFTER DELETE ON `Bejo` FOR EACH ROW BEGIN
+UPDATE mac
+SET Contador=Contador-1
+WHERE idMac=OLD.mac_idMac;
+UPDATE Sensor
+SET Contador=Contador-1
+WHERE idSensor=OLD.Sensor_idSensor;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `TgBJInsertLeitura` AFTER INSERT ON `Bejo` FOR EACH ROW BEGIN
+UPDATE mac
+SET Contador=Contador+1
+WHERE idMac=NEW.mac_idMac;
+UPDATE Sensor
+SET Contador=Contador+1
+WHERE idSensor=NEW.Sensor_idSensor;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `mac`
+--
+
+CREATE TABLE `mac` (
+  `idMac` varchar(17) NOT NULL,
+  `Nome` varchar(35) DEFAULT NULL,
+  `Contador` int(10) UNSIGNED DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `sensorbejo`
+--
+
+CREATE TABLE `sensor` (
+  `idSensor` int(10) UNSIGNED NOT NULL,
+  `Nome` varchar(15) DEFAULT NULL,
+  `Contador` int(10) UNSIGNED DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuariobejo`
+--
+
+CREATE TABLE `usuariobejo` (
+  `idUsuarioBeJo` int(10) UNSIGNED NOT NULL,
+  `Login` varchar(25) DEFAULT NULL,
+  `Nome` varchar(50) DEFAULT NULL,
+  `Senha` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `leiturabejo`
+--
+ALTER TABLE `leiturabejo`
+  ADD PRIMARY KEY (`idLeituraBeJo`),
+  ADD KEY `LeituraBeJo_FKIndex1` (`Mac_idMac`),
+  ADD KEY `LeituraBeJo_FKIndex2` (`Sensor_idSensor`);
+
+--
+-- Índices para tabela `mac`
+--
+ALTER TABLE `mac`
+  ADD PRIMARY KEY (`idMac`);
+
+--
+-- Índices para tabela `sensor`
+--
+ALTER TABLE `sensor`
+  ADD PRIMARY KEY (`idSensor`);
+
+--
+-- Índices para tabela `usuariobejo`
+--
+ALTER TABLE `usuariobejo`
+  ADD PRIMARY KEY (`idUsuarioBeJo`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `leiturabejo`
+--
+ALTER TABLE `leiturabejo`
+  MODIFY `idLeituraBeJo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `sensor`
+--
+ALTER TABLE `sensor`
+  MODIFY `idSensor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `usuarioBeJo`
+--
+ALTER TABLE `usuariobejo`
+  MODIFY `idUsuarioBeJo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `leiturabejo`
+--
+ALTER TABLE `leiturabejo`
+  ADD CONSTRAINT `leiturabejo_ibfk_1` FOREIGN KEY (`Mac_idMac`) REFERENCES `mac` (`idMac`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `leiturabejo_ibfk_2` FOREIGN KEY (`Sensor_idSensor`) REFERENCES `sensor` (`idSensor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;

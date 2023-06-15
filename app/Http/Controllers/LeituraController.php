@@ -20,14 +20,14 @@ class LeituraController extends Controller
 
     function create()
 {
-    $_macs_bejo = Mac::orderBy('Nome')->get();
-    $_sensors_bejo = Sensor::orderBy('Nome')->get();
+    $Macs = Mac::orderBy('Nome')->get();
+    $Sensors = Sensor::orderBy('Nome')->get();
 
 
     //dd($_sensors_bejo);
     return view('LeituraForm')->with([
-        '_macs_bejo' => $_macs_bejo,
-        '_sensors_bejo' => $_sensors_bejo,
+        'Macs' => $Macs,
+        'Sensors ' => $Sensors ,
     ]);
 }
 
@@ -38,8 +38,8 @@ class LeituraController extends Controller
             [
                 'DataLeitura' => 'required',
                 'HoraLeitura' => 'required | max: 500',
-                '_mac_bejo_id' => ' nullable',
-                '_sensor_bejo_id' => ' nullable',
+                'idMac' => ' nullable',
+                'idSensor' => ' nullable',
             ],
             [
                 'DataLeitura.required' => 'A data é obrigatória',
@@ -52,8 +52,8 @@ class LeituraController extends Controller
         Leitura::create([
             'DataLeitura' => $request->DataLeitura,
             'HoraLeitura' => $request->HoraLeitura,
-            '_mac_bejo_id' => $request->_mac_bejo_id,
-            '_sensor_bejo_id' => $request->_sensor_bejo_id,
+            'idMac' => $request->idMac,
+            'idSensor' => $request->idSensor,
         ]);
 
         return \redirect()->action(
@@ -66,14 +66,14 @@ class LeituraController extends Controller
         //select * from usuario where id = $id;
         $leitura = Leitura::findOrFail($id);
         //dd($usuario);
-        $_sensors_bejo = Sensor::orderBy('_sensor_id')->get();
+        $_sensors_bejo = Sensor::orderBy('idSensor')->get();
 
-        $_macs_bejo = Mac::orderBy('_mac_id')->get();
+        $Macs = Mac::orderBy('idMac')->get();
 
         return view('LeituraForm')->with([
             'leitura' => $leitura,
-            '_macs_bejo' => $_macs_bejo,
-            '_sensors_bejo' => $_sensors_bejo,
+            'Macs' => $Macs,
+            'Sensors' => $Sensors,
         ]);
     }
 
@@ -82,14 +82,14 @@ class LeituraController extends Controller
         //select * from usuario where id = $id;
         $leitura = Leitura::findOrFail($id);
         //dd($usuario);
-        $_sensors_bejo = Sensor::orderBy('_sensor_id')->get();
+        $Sensors = Sensor::orderBy('idSensor')->get();
 
-        $_macs_bejo = Mac::orderBy('_mac_id')->get();
+        $Macs = Mac::orderBy('idMac')->get();
 
         return view('LeituraForm')->with([
             'leitura' => $leitura,
-            '_macs_bejo' => $_macs_bejo,
-            '_sensors_bejo' => $_sensors_bejo,
+            'Macs' => $Macs,
+            'Sensors ' => $Sensors,
         ]);
     }
 
@@ -100,8 +100,8 @@ class LeituraController extends Controller
             [
                 'DataLeitura' => 'required',
                 'HoraLeitura' => 'required | max: 500',
-                '_mac_bejo_id' => ' nullable',
-                '_sensor_bejo_id' => ' nullable',
+                'idMac' => ' nullable',
+                'idSensor' => ' nullable',
             ],
             [
                 'DataLeitura.required' => 'A data é obrigatória',
@@ -117,8 +117,8 @@ class LeituraController extends Controller
 
                 'DataLeitura' => $request->DataLeitura,
                 'HoraLeitura' => $request->HoraLeitura,
-                '_mac_bejo_id' => $request->_mac_bejo_id,
-                '_sensor_bejo_id' => $_sensor_bejo_id,
+                'idMac' => $request->idMac,
+                'idSensor' => $idSensor,
             ]
         );
 

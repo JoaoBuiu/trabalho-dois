@@ -9,5 +9,5 @@ class Mac extends Model
 {
     use HasFactory;
 
-    protected $table = "_mac_bejo";
+    protected $table = "Mac";
 }

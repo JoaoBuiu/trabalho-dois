@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class _mac_bejoSeeder extends Seeder
+class MacSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class _mac_bejoSeeder extends Seeder
     {
         $fake = Faker::create("pt_BR");
         foreach(\range(1,5) as $index){
-            DB::table('_mac_bejo')->insert(
+            DB::table('Mac')->insert(
                 ['nome'=>$fake->name]
             );
         }
