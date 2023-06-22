@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('_mac_bejo', function (Blueprint $table) {
+        Schema::create('mac', function (Blueprint $table) {
             $table->id();
-            $table->string('nome',100);
-            $table->string('contador',100);
+            $table->string('Nome');
+            $table->string('Contador');
             $table->timestamps();
+
         });
 
         Schema::disableForeignKeyConstraints();
 
-        Schema::table('_leitura_bejo', function (Blueprint $table) {
-            $table->foreignId('_mac_bejo_id')->nullable()->constrained('_mac_bejo')->default(null);
+        Schema::table('leiturabejo', function (Blueprint $table) {
+            $table->foreignId('Mac_id')->nullable()->constrained('Mac')->default(null);
         });
 
         Schema::enableForeignKeyConstraints();
@@ -36,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_mac_bejo');
+        Schema::dropIfExists('mac');
     }
 };

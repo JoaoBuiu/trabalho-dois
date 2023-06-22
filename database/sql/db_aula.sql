@@ -83,12 +83,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(6, '2023_04_28_175149_create_categorias_table', 1),
 	(7, '2023_05_10_175848_create_produtos_table', 1),
 	(8, '2023_05_24_162517_create_fornecedor_table', 1),
-	(9, '2023_06_02_120433_create__mac_bejo_table', 2),
-	(10, '2023_06_02_121316_create__sensor_bejo_table', 2),
-	(11, '2023_06_02_121534_create__leitura_bejo_table', 2),
-	(12, '2023_06_02_122539_create__sensor_bejo_table', 3),
-	(13, '2023_06_02_122555_create__mac_bejo_table', 3),
-	(14, '2023_06_02_122610_create__leitura_bejo_table', 3);
+
 
 -- Copiando estrutura para tabela db_aula.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
@@ -170,67 +165,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Copiando dados para a tabela db_aula.usuario: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela db_aula._leitura_bejo
-CREATE TABLE IF NOT EXISTS `_leitura_bejo` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `_mac_bejo_id` bigint unsigned DEFAULT NULL,
-  `_sensor_bejo_id` bigint unsigned DEFAULT NULL,
-  `DataLeitura` date DEFAULT NULL,
-  `HoraLeitura` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `Mac_idMac` (`Mac_idMac`),
-  KEY `Sensor_idSensor` (`Sensor_idSensor`),
-  CONSTRAINT `_leitura_bejo_Mac_idMac_foreign` FOREIGN KEY (`Mac_idMac`) REFERENCES `Mac` (`idMac`),
-  CONSTRAINT `_leitura_bejo_Sensor_idSensor_foreign` FOREIGN KEY (`Sensor_idSensor`) REFERENCES `Sensor` (`idSensor`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Copiando dados para a tabela db_aula._leitura_bejo: ~0 rows (aproximadamente)
-INSERT INTO `_leitura_bejo` (`id`, `created_at`, `updated_at`, `_mac_bejo_id`, `_sensor_bejo_id`, `DataLeitura`, `HoraLeitura`) VALUES
-	(1, '2023-06-02 20:18:18', '2023-06-02 20:18:18', 1, 1, '3122-03-12', '12:30'),
-	(2, '2023-06-02 20:26:05', '2023-06-02 20:26:05', 1, 1, '1233-03-12', '12:30'),
-	(3, '2023-06-02 20:27:04', '2023-06-02 20:27:04', 1, 1, '1233-03-12', '12:30'),
-	(4, '2023-06-02 20:33:59', '2023-06-02 20:33:59', NULL, NULL, '2121-03-12', '12:30');
 
 -- Copiando estrutura para tabela db_aula._mac_bejo
-CREATE TABLE IF NOT EXISTS `Mac` (
-  `idMac` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `Nome` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Contador` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`idMac`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Copiando dados para a tabela db_aula._mac_bejo: ~1 rows (aproximadamente)
-INSERT INTO `Mac` (`idMac`, `created_at`, `updated_at`, `Nome`, `Contador`) VALUES
-	(1, NULL, NULL, '15:13:1d:12', '34'),
-	(2, NULL, NULL, '15:11:13:12', '39');
-
--- Copiando estrutura para tabela db_aula._sensor_bejo
-CREATE TABLE IF NOT EXISTS `Sensor` (
-  `idSensor` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `Nome` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Contador` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`idSensor`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Copiando dados para a tabela db_aula._sensor_bejo: ~1 rows (aproximadamente)
-INSERT INTO `Sensor` (`idSensor`, `created_at`, `updated_at`, `Nome`, `Contador`) VALUES
-	(1, NULL, NULL, '15:13:1d:12', '34'),
-	(2, NULL, NULL, '15:11:13:12', '39');
-
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
-
-
-C   digo do Miguel
-
+-- --------------------------------------------------------
+--
+-- Estrutura da tabela `mac`
+--
 CREATE TABLE Bejo (
   idLeituraBejo INTEGER UNSIGNED  NOT NULL   AUTO_INCREMENT,
   Sensor_idSensor INTEGER UNSIGNED  NOT NULL  ,
@@ -289,12 +231,6 @@ WHERE idSensor=NEW.Sensor_idSensor;
 END
 $$
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `mac`
---
 
 CREATE TABLE `mac` (
   `idMac` varchar(17) NOT NULL,

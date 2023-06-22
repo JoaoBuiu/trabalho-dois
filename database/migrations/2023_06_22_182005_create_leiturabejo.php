@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('_leitura_bejo', function (Blueprint $table) {
+        Schema::create('leiturabejo', function (Blueprint $table) {
             $table->id();
             $table->date('DataLeitura');
-            $table->string('HoraLeitura',10);
-            $table->string('ValorSensor');
+            $table->string('HoraLeitura');
+            $table->double('ValorSensor');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_leitura_bejo');
+        Schema::dropIfExists('nome_leiturabejo');
     }
 };

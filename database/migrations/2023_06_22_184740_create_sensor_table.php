@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('_sensor_bejo', function (Blueprint $table) {
+        Schema::create('Sensor', function (Blueprint $table) {
             $table->id();
-            $table->string('nome',100);
-            $table->string('contador',100);
+            $table->string('Nome');
+            $table->string('Contador');
             $table->timestamps();
         });
 
         Schema::disableForeignKeyConstraints();
 
-        Schema::table('_leitura_bejo', function (Blueprint $table) {
-            $table->foreignId('_sensor_bejo_id')->nullable()->constrained('_sensor_bejo')->default(null);
+        Schema::table('leiturabejo', function (Blueprint $table) {
+            $table->foreignId('Sensor_id')->nullable()->constrained('Sensor')->default(null);
         });
 
         Schema::enableForeignKeyConstraints();
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_sensor_bejo');
+        Schema::dropIfExists('sensor');
     }
 };
